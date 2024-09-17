@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#381D2A',
+                        secondary: '#3E6990',
+                        darkAccent: '#000000',
+                        lightAccent: '#FFFFFF',
+                        primaryLight: '#5C2E3D',
+                        secondaryLight: '#4A7DA6',
+                        darkGray: '#1A1A1A',
+                        lightGray: '#F2F2F2',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Additional styling to ensure full width container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        header img {
+            max-width: 150px;
+        }
+
+        .vulnerabilites {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .vulnerabilite {
+            background-color: var(--tw-bg-lightGray);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .vulnerabilite img {
+            width: 100%;
+            height: auto;
+        }
+
+        .vulnerabilite div {
+            margin-top: 0.5rem;
+        }
+
+        .vulnerabilite button {
+            margin-top: 0.5rem;
+            background-color: var(--tw-bg-primary);
+            color: var(--tw-text-lightAccent);
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+
+        .vulnerabilite button:hover {
+            background-color: var(--tw-bg-primaryLight);
+        }
+    </style>
+</head>
+
+<body class="bg-lightGray text-darkGray">
+    <div class="container">
+        <header class="flex items-center justify-between py-4">
+            <img src="" alt="Logo" class="h-12">
+            <nav class="flex items-center space-x-4">
+                <div>Pseudo</div>
+                <!-- boutons pour accéder aux paramètres -->
+                <button
+                    class="bg-secondary text-lightAccent px-4 py-2 rounded hover:bg-secondaryLight">
+                    <a href="../paramètres/">Paramètres</a>
+                    </button>
+            </nav>
+        </header>
+
+        <!-- Search section -->
+        <form action="" class="mb-4 flex items-center space-x-2">
+            <input type="text" name="search" placeholder="Rechercher..."
+                class="p-2 border border-darkGray rounded flex-grow">
+            <button type="submit"
+                class="bg-primary text-lightAccent px-4 py-2 rounded hover:bg-primaryLight">Rechercher</button>
+        </form>
+
+        <div class="vulnerabilites">
+            <div class="vulnerabilite" id="sqli">
+                <img src="" alt="Image symbolisant la vulnérabilité">
+                <div class="font-semibold">Nom de la vulnérabilité</div>
+                <div>Petite description</div>
+                <button> <a href="../details/">Voir détails -></a>
+                </button>
+            </div>
+            <div class="vulnerabilite" id="xss">
+                <img src="" alt="Image symbolisant la vulnérabilité">
+                <div class="font-semibold">Nom de la vulnérabilité</div>
+                <div>Petite description</div>
+                <button> <a href="../details/">Voir détails -></a>
+                </button>
+            </div>
+            <div class="vulnerabilite" id="csrf">
+                <img src="" alt="Image symbolisant la vulnérabilité">
+                <div class="font-semibold">Nom de la vulnérabilité</div>
+                <div>Petite description</div>
+                <button> <a href=".../details/">Voir détails -></a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

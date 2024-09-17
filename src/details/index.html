@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#381D2A',
+                        secondary: '#3E6990',
+                        darkAccent: '#000000',
+                        lightAccent: '#FFFFFF',
+                        primaryLight: '#5C2E3D',
+                        secondaryLight: '#4A7DA6',
+                        darkGray: '#1A1A1A',
+                        lightGray: '#F2F2F2',
+                    }
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuItems = document.querySelectorAll('aside ul li a');
+            const sections = document.querySelectorAll('#contenu > div');
+
+            menuItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = item.getAttribute('href').substring(1);
+
+                    sections.forEach(section => {
+                        if (section.id === targetId) {
+                            section.classList.remove('hidden');
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // Optionally, show the first section by default
+            if (menuItems.length > 0) {
+                menuItems[0].click();
+            }
+        });
+    </script>
+</head>
+
+<body class="bg-lightGray text-darkGray">
+    <div class="container mx-auto p-4">
+        <header class="flex items-center justify-between py-4 border-b border-darkGray">
+            <img src="" alt="Logo" class="h-12">
+            <nav class="flex items-center space-x-4">
+                <div>Pseudo</div>
+                <button class="bg-secondary text-lightAccent px-4 py-2 rounded hover:bg-secondaryLight">                    <a href="../paramètres/">Paramètres</a>
+</button>
+            </nav>
+        </header>
+
+        <!-- Section de détails -->
+        <div class="flex mt-6">
+            <!-- Barre verticale de menu -->
+            <aside class="w-1/4 bg-white p-4 border-r border-darkGray">
+                <h2 class="text-xl font-semibold mb-4">Menu</h2>
+                <ul class="space-y-2">
+                    <li><a href="#cours" class="text-primary hover:underline">Cours</a></li>
+                    <li><a href="#challenges" class="text-primary hover:underline">Challenges</a></li>
+                    <li><a href="#guides" class="text-primary hover:underline">Guides</a></li>
+                </ul>
+            </aside>
+
+            <!-- Contenu principal -->
+            <main class="w-3/4 p-4">
+                <h2 class="text-2xl font-bold mb-4">Nom de la vulnérabilité</h2>
+
+                <!-- Contenu basé sur la sélection -->
+                <div id="contenu" class="space-y-6">
+                    <!-- Cours -->
+                    <div id="cours" class="bg-white p-4 rounded shadow hidden">
+                        <h3 class="text-xl font-semibold mb-2">Cours</h3>
+                        <p>Informations sur le cours lié à cette vulnérabilité.</p>
+                    </div>
+
+                    <!-- Challenge -->
+                    <div id="challenges" class="bg-white p-4 rounded shadow hidden">
+                        <h3 class="text-xl font-semibold mb-2">Challenge</h3>
+                        <div class="mb-2">Petite description du challenge.</div>
+                        <a href="#" class="text-primary hover:underline">Accéder aux challenges</a>
+                        <form action="" class="mt-4">
+                            <input type="text" name="flag" placeholder="FLAG{FAKE_FLAG}" class="p-2 border border-darkGray rounded w-full">
+                            <button type="submit" class="mt-2 bg-primary text-lightAccent px-4 py-2 rounded hover:bg-primaryLight">Soumettre</button>
+                        </form>
+                    </div>
+
+                    <!-- Guide -->
+                    <div id="guides" class="bg-white p-4 rounded shadow hidden">
+                        <h3 class="text-xl font-semibold mb-2">Guide</h3>
+                        <p>Informations sur le guide associé.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

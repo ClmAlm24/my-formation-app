@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                primary: '#381D2A',          // Rouge-marron sombre
+                secondary: '#3E6990',        // Bleu-gris moyen
+                darkAccent: '#000000',       // Noir
+                lightAccent: '#FFFFFF',      // Blanc
+                primaryLight: '#5C2E3D',     // Version plus claire de la couleur principale
+                secondaryLight: '#4A7DA6',   // Version plus claire de la couleur secondaire
+                darkGray: '#1A1A1A',         // Gris très foncé pour les accents
+                lightGray: '#F2F2F2',        // Gris très clair pour les tons doux
+              }
+            }
+          }
+        }
+      </script>
+</head>
+
+<body class="bg-lightGray text-darkGrayflex items-center justify-center">
+    <div id="container" class="container mx-auto p-8  rounded-lg">
+        <header class="mb-6">
+            <img src="" alt="Logo" class="mx-auto">
+        </header>
+
+        <div class="body flex justify-center items-center">
+            <div class="mb-6 text-center flex-1 flex flex-col justify-center">
+                <h1 class="text-2xl font-bold text-primary">Bienvenue sur ...</h1>
+                <p class="text-secondary">Vous apprenez pas à pas les vulnérabilités du web</p>
+            </div>
+
+            <div class="flex flex-col flex-1">
+                <!-- Boutons pour basculer entre Connexion et Inscription -->
+                <div class="flex mb-4">
+                    <div id="loginBtn" class="active cursor-pointer text-primary mr-4 font-bold">Connexion</div>
+                    <div id="registerBtn" class="cursor-pointer text-secondary font-bold">Inscription</div>
+                </div>
+
+                <!-- Section Connexion -->
+                <div id="connexionSection" class="bg-primaryLight p-6 rounded-lg shadow-md">
+                    <!-- <h2 class="text-white text-lg font-bold mb-4">Connexion</h2> -->
+                    <form action="" id="connexion" class="space-y-4">
+                        <input type="email" name="email" placeholder="Entrez votre adresse mail" class="w-full p-2 rounded border border-gray-300">
+                        <input type="password" name="password" placeholder="Entrez votre mot de passe" class="w-full p-2 rounded border border-gray-300">
+                        <div class="flex items-center">
+                            <input type="checkbox" name="remember_me" id="remember_me" class="mr-2">
+                            <label for="remember_me" class="text-white">Gardez moi connecté</label>
+                        </div>
+                        <button type="submit" class="w-full bg-secondary text-lightAccent py-2 rounded">Se connecter</button>
+                    </form>
+                </div>
+
+                <!-- Section Inscription (caché par défaut) -->
+                <div id="inscriptionSection" class="bg-secondaryLight p-6 rounded-lg shadow-md hidden">
+                    <!-- <h2 class="text-white text-lg font-bold mb-4">Inscription</h2> -->
+                    <form action="" id="inscription" class="space-y-4">
+                        <input type="email" name="email" placeholder="Entrez votre adresse mail" class="w-full p-2 rounded border border-gray-300">
+                        <input type="text" name="pseudo" placeholder="Entrez votre pseudo" class="w-full p-2 rounded border border-gray-300">
+                        <input type="password" name="password" placeholder="Entrez votre mot de passe" class="w-full p-2 rounded border border-gray-300">
+                        <input type="password" name="c_password" placeholder="Confirmez votre mot de passe" class="w-full p-2 rounded border border-gray-300">
+                        <div class="flex items-center">
+                            <input type="checkbox" name="terms" id="terms" class="mr-2">
+                            <label for="terms" class="text-white">J'ai lu tous les thèmes</label>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-lightAccent py-2 rounded">S'inscrire</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/script.js"></script>
+</body>
+</html>
