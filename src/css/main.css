@@ -5,3 +5,39 @@
 body{
     @apply bg-black;
 }
+
+.btn{
+    @apply bg-black text-white;
+}
+
+.vulnerabilites {
+    @apply flex flex-wrap gap-4 justify-center;
+}
+
+.vulnerabilite {
+    @apply bg-white shadow-md w-full max-w-sm rounded-lg overflow-hidden mx-auto font-[sans-serif] mt-4;
+}
+
+.card-image img {
+    @apply w-full;
+}
+
+.card-content {
+    @apply p-6;
+}
+
+.vuln-name {
+    @apply text-gray-800 text-xl font-bold;
+}
+
+.vuln-description {
+    @apply mt-4 text-sm text-gray-500 leading-relaxed;
+}
+
+.view-details-btn {
+    @apply mt-6 px-5 py-2.5 rounded-lg text-white text-sm tracking-wider border-none outline-none bg-blue-600 hover:bg-blue-700 active:bg-blue-600;
+}
+
+.view-details-btn a {
+    @apply text-white no-underline;
+}
