@@ -1,39 +1,13 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Inscription</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#381D2A',
-                        secondary: '#3E6990',
-                        darkAccent: '#000000',
-                        lightAccent: '#FFFFFF',
-                        primaryLight: '#5C2E3D',
-                        secondaryLight: '#4A7DA6',
-                        darkGray: '#1A1A1A',
-                        lightGray: '#F2F2F2',
-                        scooter: '#2eb9db',
-                        iceCold: '#9ee9f4',
-                        viking: '#67bdd5',
-                        astral: '#2f8ea1',
-                        shakespeare: '#4bb2cc',
-                        pelorous: '#3da5b9',
-                        malibu: '#78e5fc',
-                        bostonBlue: '#3094b5',
-                        pictonBlue: '#3ccce4',
-                        pictonBlue2: '#34c4f4',
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="../dist/output.css">
 </head>
 
 <body class="bg-lightGray text-darkGray flex items-center justify-center min-h-screen">
@@ -54,38 +28,42 @@
                 <!-- Section Inscription -->
                 <div id="inscriptionSection" class="bg-white p-4 sm:p-6 lg:p-8 rounded-lg shadow-md">
                     <h2 class="text-darkGray text-center text-xl sm:text-2xl font-bold mb-4">Inscription</h2>
-                    <form action="" id="inscription" class="mt-6 space-y-4">
+
+                    <?php if (isset($_SESSION['error'])): ?>
+                        <div class="text-red-500 text-center mb-4">
+                            <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (isset($_SESSION['success'])): ?>
+                        <div class="text-green-500 text-center mb-4">
+                            <?php echo $_SESSION['success']; unset($_SESSION['success']); ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <form action="./inscription.php" method="POST" id="inscription" class="mt-6 space-y-4">
                         <div>
                             <label class="text-darkGray text-sm mb-2 block">Email</label>
-                            <div class="relative flex items-center">
-                                <input type="email" name="email" placeholder="Entrez votre adresse mail" required
-                                    class="w-full text-darkGray text-sm border border-gray-300 px-4 py-2 rounded-md outline-scooter">
-                            </div>
+                            <input type="email" name="email" placeholder="Entrez votre adresse mail" required
+                                class="w-full text-darkGray text-sm border border-gray-300 px-4 py-2 rounded-md outline-scooter">
                         </div>
                         <div>
                             <label class="text-darkGray text-sm mb-2 block">Pseudo</label>
-                            <div class="relative flex items-center">
-                                <input type="text" name="pseudo" placeholder="Entrez votre pseudo" required
-                                    class="w-full text-darkGray text-sm border border-gray-300 px-4 py-2 rounded-md outline-scooter">
-                            </div>
+                            <input type="text" name="pseudo" placeholder="Entrez votre pseudo" required
+                                class="w-full text-darkGray text-sm border border-gray-300 px-4 py-2 rounded-md outline-scooter">
                         </div>
                         <div>
                             <label class="text-darkGray text-sm mb-2 block">Mot de passe</label>
-                            <div class="relative flex items-center">
-                                <input type="password" name="password" placeholder="Entrez votre mot de passe" required
-                                    class="w-full text-darkGray text-sm border border-gray-300 px-4 py-2 rounded-md outline-scooter">
-                            </div>
+                            <input type="password" name="password" placeholder="Entrez votre mot de passe" required
+                                class="w-full text-darkGray text-sm border border-gray-300 px-4 py-2 rounded-md outline-scooter">
                         </div>
                         <div>
                             <label class="text-darkGray text-sm mb-2 block">Confirmez le mot de passe</label>
-                            <div class="relative flex items-center">
-                                <input type="password" name="c_password" placeholder="Confirmez votre mot de passe"
-                                    required class="w-full text-darkGray text-sm border border-gray-300 px-4 py-2 rounded-md outline-scooter">
-                            </div>
+                            <input type="password" name="c_password" placeholder="Confirmez votre mot de passe"
+                                required class="w-full text-darkGray text-sm border border-gray-300 px-4 py-2 rounded-md outline-scooter">
                         </div>
                         <div class="flex items-center">
-                            <input id="terms" name="terms" type="checkbox"
-                                class="h-4 w-4 text-scooter border-gray-300 rounded">
+                            <input id="terms" name="terms" type="checkbox" class="h-4 w-4 text-scooter border-gray-300 rounded" required>
                             <label for="terms" class="ml-3 text-sm text-darkGray">J'ai lu tous les thèmes</label>
                         </div>
                         <div class="mt-6">

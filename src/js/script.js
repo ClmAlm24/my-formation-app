@@ -26,3 +26,4 @@ import { Ripple, Input, initTWE } from 'tw-elements';
 
 // Initialisation de tw-elements avec les composants requis
 initTWE({ Ripple, Input });
+

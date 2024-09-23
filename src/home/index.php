@@ -1,3 +1,22 @@
+<?php
+// Démarrage de la session
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    // Si l'utilisateur n'est pas connecté, rediriger vers la page de connexion
+    header('Location: ../index.php'); // Remplacez par le chemin de votre page de connexion
+    exit;
+}
+
+// Si l'utilisateur est connecté, vous pouvez continuer avec le reste du code de la page
+require '../db_connect.php';
+
+// Récupérer les données des vulnérabilités
+$query = "SELECT * FROM vulnerabilites";
+$stmt = $pdo->query($query);
+$vulnerabilities = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,34 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#381D2A',
-                        secondary: '#3E6990',
-                        darkAccent: '#000000',
-                        lightAccent: '#FFFFFF',
-                        primaryLight: '#5C2E3D',
-                        secondaryLight: '#4A7DA6',
-                        darkGray: '#1A1A1A',
-                        lightGray: '#F2F2F2',
-                        scooter: '#2eb9db',
-                        iceCold: '#9ee9f4',
-                        viking: '#67bdd5',
-                        astral: '#2f8ea1',
-                        shakespeare: '#4bb2cc',
-                        pelorous: '#3da5b9',
-                        malibu: '#78e5fc',
-                        bostonBlue: '#3094b5',
-                        pictonBlue: '#3ccce4',
-                        pictonBlue2: '#34c4f4',
-                    }
-                }
-            }
-        }
-    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/tw-elements@latest/dist/index.min.js"></script>
     <link rel="stylesheet" href="../dist/output.css">
 </head>
@@ -46,9 +38,10 @@
                 <img src="../assets/images/logo-removebg-preview.png" alt="Logo" class="w-12" />
             </a>
 
-            <!-- Centrage du pseudo -->
             <div class="flex-grow flex justify-center">
-                <div class="text-darkGray font-semibold">Pseudo</div>
+                <div class="text-darkGray font-semibold">
+                    <?php echo isset($_SESSION['pseudo']) ? htmlspecialchars($_SESSION['pseudo']) : 'Invité'; ?>
+                </div>
             </div>
 
             <!-- Desktop Menu -->
@@ -96,7 +89,12 @@
             </ul>
         </div>
     </header>
-
+    <?php if (!empty($_SESSION['success'])): ?>
+        <div class="bg-green-200 text-green-800 p-4 rounded-md mb-4">
+            <?php echo htmlspecialchars($_SESSION['success']); ?>
+        </div>
+        <?php unset($_SESSION['success']); ?>
+    <?php endif; ?>
     <!-- Search section -->
     <form action="" class="my-7 flex items-center space-x-2 border-2 relative border-gray-300 rounded-lg bg-white">
         <div class="relative flex w-full">
@@ -120,46 +118,22 @@
     </form>
 
     <div class="vulnerabilites flex flex-wrap gap-4">
-        <!-- SQL Injection -->
-        <div class="vulnerabilite bg-white p-4 rounded-lg shadow-md w-full md:w-1/3" id="sqli">
-            <div class="card-image">
-                <img src="https://readymadeui.com/Imagination.webp" alt="Image symbolisant la vulnérabilité SQL Injection" class="w-full rounded-t-lg">
+        <?php foreach ($vulnerabilities as $vulnerability): ?>
+            <div class="vulnerabilite bg-white p-4 rounded-lg shadow-md w-full md:w-1/3" id="<?php echo htmlspecialchars($vulnerability['slug']); ?>">
+                <div class="card-image">
+                    <img src="https://readymadeui.com/Imagination.webp" alt="Image symbolisant la vulnérabilité <?php echo htmlspecialchars($vulnerability['nom']); ?>" class="w-full rounded-t-lg">
+                </div>
+                <div class="card-content p-4">
+                    <h3 class="vuln-name text-primary text-xl font-semibold"><?php echo htmlspecialchars($vulnerability['nom']); ?></h3>
+                    <p class="vuln-description text-darkGray"><?php echo htmlspecialchars($vulnerability['description']); ?></p>
+                    <button class="bg-secondary text-lightAccent py-2 px-4 rounded hover:bg-secondaryLight transition duration-200">
+                        <a href="../details/?slug=<?php echo urlencode($vulnerability['slug']); ?>">En savoir plus</a>
+                    </button>
+                </div>
             </div>
-            <div class="card-content p-4">
-                <h3 class="vuln-name text-primary text-xl font-semibold">SQL Injection</h3>
-                <p class="vuln-description text-darkGray">Une vulnérabilité critique permettant d'exécuter des commandes SQL malveillantes dans l'application.</p>
-                <button class="bg-secondary text-lightAccent py-2 px-4 rounded hover:bg-secondaryLight transition duration-200"><a href="../details/">En savoir plus</a></button>
-            </div>
-        </div>
-    
-        <!-- Cross-Site Scripting (XSS) -->
-        <div class="vulnerabilite bg-white p-4 rounded-lg shadow-md w-full md:w-1/3" id="xss">
-            <div class="card-image">
-                <img src="https://readymadeui.com/Imagination.webp" alt="Image symbolisant la vulnérabilité XSS" class="w-full rounded-t-lg">
-            </div>
-            <div class="card-content p-4">
-                <h3 class="vuln-name text-primary text-xl font-semibold">Cross-Site Scripting (XSS)</h3>
-                <p class="vuln-description text-darkGray">Une vulnérabilité qui permet à un attaquant d'injecter des scripts malveillants dans les pages vues par d'autres utilisateurs.</p>
-                <button class="bg-secondary text-lightAccent py-2 px-4 rounded hover:bg-secondaryLight transition duration-200">
-
-                    <a href="../details/">En savoir plus</a>
-                </button>
-            </div>
-        </div>
-    
-        <!-- Cross-Site Request Forgery (CSRF) -->
-        <div class="vulnerabilite bg-white p-4 rounded-lg shadow-md w-full md:w-1/3" id="csrf">
-            <div class="card-image">
-                <img src="https://readymadeui.com/Imagination.webp" alt="Image symbolisant la vulnérabilité CSRF" class="w-full rounded-t-lg">
-            </div>
-            <div class="card-content p-4">
-                <h3 class="vuln-name text-primary text-xl font-semibold">Cross-Site Request Forgery (CSRF)</h3>
-                <p class="vuln-description text-darkGray">Une vulnérabilité permettant à un attaquant de tromper un utilisateur authentifié pour exécuter des actions non autorisées.</p>
-                <button class="bg-secondary text-lightAccent py-2 px-4 rounded hover:bg-secondaryLight transition duration-200"><a href="../details/">En savoir plus</a></button>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
-    
+
 
     <!-- Script pour le menu mobile -->
     <script>
