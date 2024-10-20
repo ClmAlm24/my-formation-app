@@ -13,6 +13,8 @@ session_start();
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements@latest/dist/index.min.js"></script>
     <link rel="stylesheet" href="../dist/output.css">
+    <script src="../script.js"></script>
+
 </head>
 
 <body class="bg-lightGray text-darkGray flex items-center justify-center min-h-screen">

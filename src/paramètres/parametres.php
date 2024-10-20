@@ -22,7 +22,7 @@ function updateEmail($userId, $newEmail, $password) {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['password'])) {
-        // Vérifier si l'email est déjà utilisé
+        
         $checkEmailStmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = ? AND id != ?");
         $checkEmailStmt->execute([$newEmail, $userId]);
         if ($checkEmailStmt->fetchColumn() > 0) {
@@ -42,7 +42,7 @@ function updateUsername($userId, $newUsername, $password) {
     $user = $stmt->fetch();
 
     if ($user && password_verify($password, $user['password'])) {
-        // Vérifier si le pseudo est déjà utilisé
+
         $checkUsernameStmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE pseudo = ? AND id != ?");
         $checkUsernameStmt->execute([$newUsername, $userId]);
         if ($checkUsernameStmt->fetchColumn() > 0) {

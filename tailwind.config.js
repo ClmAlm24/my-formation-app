@@ -22,8 +22,8 @@ module.exports = {
         bostonBlue: '#3094b5',
         pictonBlue: '#3ccce4',
         pictonBlue2: '#34c4f4' // Notez que les clés de couleur doivent être uniques
-      }
-    }
+      },
+    },
   },
-  plugins: []
+  plugins: [],
 }

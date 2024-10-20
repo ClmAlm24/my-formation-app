@@ -2,6 +2,10 @@
 // Démarrage de la session
 session_start();
 
+// Affichage des erreurs pour le débogage
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Vérification de la connexion de l'utilisateur
 if (!isset($_SESSION['user_id'])) {
     // Si l'utilisateur n'est pas connecté, renvoyer une erreur
@@ -19,6 +23,12 @@ $stmt = $pdo->prepare("SELECT email, pseudo, created_at FROM users WHERE id = ?"
 $stmt->execute([$userId]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+// Vérifier si l'utilisateur existe
+if (!$user) {
+    echo json_encode(['error' => 'Utilisateur non trouvé']);
+    exit;
+}
+
 // Récupération des cours terminés
 $stmt = $pdo->prepare("
     SELECT v.nom, c.titre
@@ -32,33 +42,30 @@ $completedCourses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Récupération des challenges réussis par l'utilisateur
 $stmt = $pdo->prepare("
-    SELECT v.nom, ch.description
+    SELECT v.nom AS vulnerability_name, ch.description AS challenge_description
     FROM challenges ch
     JOIN vulnerabilites v ON ch.vuln_id = v.id
-    JOIN progression p ON p.vuln_id = ch.vuln_id
-    WHERE p.user_id = ? AND ch.is_solved = 1
+    JOIN user_challenges uc ON uc.challenge_id = ch.id
+    WHERE uc.user_id = ? 
 ");
 $stmt->execute([$userId]);
 $completedChallenges = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+
 // Calcul des scores des cours et des challenges
 $stmt = $pdo->prepare("
-    SELECT 
-        COUNT(CASE WHEN cours_termine = 1 THEN 1 END) as completed_courses
+    SELECT COUNT(*) as completed_courses
     FROM progression
-    WHERE user_id = ?
+    WHERE user_id = ? AND cours_termine = 1
 ");
 $stmt->execute([$userId]);
 $completedCoursesCount = $stmt->fetchColumn();
 
 // Compter le nombre total de challenges réussis
-$stmt = $pdo->prepare("
-    SELECT COUNT(*) as completed_challenges
-    FROM challenges ch
-    WHERE ch.is_solved = 1 AND ch.vuln_id = ?
-");
+$stmt = $pdo->prepare("SELECT * FROM user_challenges WHERE user_id = ?");
 $stmt->execute([$userId]);
 $completedChallengesCount = $stmt->fetchColumn();
+
 
 // Compter le nombre total de cours
 $stmt = $pdo->prepare("SELECT COUNT(*) as total_courses FROM cours");
@@ -71,13 +78,13 @@ $stmt->execute();
 $totalChallenges = $stmt->fetchColumn();
 
 // Calculer le taux de complétion des cours
-$courseCompletionRate = ($totalCourses > 0) 
-    ? ($completedCoursesCount / $totalCourses) * 100 
+$courseCompletionRate = ($totalCourses > 0)
+    ? ($completedCoursesCount / $totalCourses) * 100
     : 0;
 
 // Calculer le taux de réussite des challenges
-$challengeCompletionRate = ($totalChallenges > 0) 
-    ? ($completedChallengesCount / $totalChallenges) * 100 
+$challengeCompletionRate = ($totalChallenges > 0)
+    ? ($completedChallengesCount / $totalChallenges) * 100
     : 0;
 
 // Récupération des vulnérabilités disponibles

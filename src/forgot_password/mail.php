@@ -2,7 +2,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require '../../vendor/autoload.php'; // Inclure le fichier autoload de Composer
+require '../vendor/autoload.php'; // Inclure le fichier autoload de Composer
 
 function sendResetEmail($to, $subject, $resetLink) {
     $mail = new PHPMailer(true); // Instancier la classe PHPMailer
@@ -60,7 +60,7 @@ function sendResetEmail($to, $subject, $resetLink) {
 
         // Envoyer l'e-mail
         $mail->send();
-        echo 'L\'email de réinitialisation a été envoyé.';
+        // echo 'L\'email de réinitialisation a été envoyé.';
     } catch (Exception $e) {
         echo "Erreur d'envoi de l'email. Mailer Error: {$mail->ErrorInfo}";
     }

@@ -1,14 +1,12 @@
-# Utiliser l'image officielle PHP avec Apache
-FROM php:8.1-apache
+FROM php:8.0-apache
 
-# Installer les extensions PHP nécessaires
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Copier tout le contenu de ton application dans le dossier de l'image Docker
-COPY . /var/www/html/
+COPY ./src /var/www/html/
 
-# Assurer que le dossier a les bons droits pour Apache
-RUN chown -R www-data:www-data /var/www/html
+RUN chown -R www-data:www-data /var/www/html/
+RUN chmod -R 755 /var/www/html/
 
-# Exposer le port 80
+COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+
 EXPOSE 80

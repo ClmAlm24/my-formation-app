@@ -22,6 +22,7 @@ if (isset($_SESSION['user_id'])) {
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements@latest/dist/index.min.js"></script>
     <link rel="stylesheet" href="./dist/output.css">
+    <script src="script.js"></script>
 </head>
 
 <body class="bg-lightGray text-darkGray flex items-center justify-center min-h-screen">
@@ -34,7 +35,7 @@ if (isset($_SESSION['user_id'])) {
 
         <div class="body flex flex-col lg:flex-row items-center">
             <div class="mb-6 lg:mb-0 lg:mr-6 text-center lg:text-left w-1/2">
-                <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-scooter">Bienvenue sur ...</h1>
+                <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-scooter">Bienvenue sur EMES Flaglab</h1>
                 <p class="text-viking text-sm sm:text-base lg:text-lg">Vous apprenez pas à pas les vulnérabilités du web
                 </p>
             </div>
@@ -112,9 +113,9 @@ if (isset($_SESSION['user_id'])) {
             document.getElementById('mobileMenu').classList.toggle('hidden');
         });
 
-        document.getElementById('closeMenu').addEventListener('click', function () {
-            document.getElementById('mobileMenu').classList.add('hidden');
-        });
+            document.getElementById('closeMenu').addEventListener('click', function () {
+                document.getElementById('mobileMenu').classList.add('hidden');
+            });
     </script>
 </body>
 

@@ -1,4 +1,8 @@
+<?php
+session_start();
 
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -8,6 +12,8 @@
     <title>Inscription</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../dist/output.css">
+    <script src="../script.js"></script>
+
 </head>
 
 <body class="bg-lightGray text-darkGray flex items-center justify-center min-h-screen">
@@ -20,8 +26,9 @@
 
         <div class="body flex flex-col lg:flex-row items-center">
             <div class="mb-6 lg:mb-0 lg:mr-6 text-center lg:text-left flex-1">
-                <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-scooter">Bienvenue sur ...</h1>
-                <p class="text-viking text-sm sm:text-base lg:text-lg">Vous apprenez pas à pas les vulnérabilités du web</p>
+                <h1 class="text-xl sm:text-2xl lg:text-3xl font-bold text-scooter">Bienvenue sur EMES Flaglab</h1>
+                <p class="text-viking text-sm sm:text-base lg:text-lg">Vous apprenez pas à pas les vulnérabilités du web
+                </p>
             </div>
 
             <div class="flex flex-col flex-1">
@@ -30,15 +37,17 @@
                     <h2 class="text-darkGray text-center text-xl sm:text-2xl font-bold mb-4">Inscription</h2>
 
                     <?php if (isset($_SESSION['error'])): ?>
-                        <div class="text-red-500 text-center mb-4">
-                            <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>
+                        <div class="bg-red-200 text-red-800 p-4 rounded-md mb-4">
+                            <p><?php echo htmlspecialchars($_SESSION['error']); ?></p>
                         </div>
+                        <?php unset($_SESSION['error']); ?>
                     <?php endif; ?>
 
                     <?php if (isset($_SESSION['success'])): ?>
-                        <div class="text-green-500 text-center mb-4">
-                            <?php echo $_SESSION['success']; unset($_SESSION['success']); ?>
+                        <div class="bg-green-200 text-green-800 p-4 rounded-md mb-4">
+                            <p><?php echo htmlspecialchars($_SESSION['success']); ?></p>
                         </div>
+                        <?php unset($_SESSION['success']); ?>
                     <?php endif; ?>
 
                     <form action="./inscription.php" method="POST" id="inscription" class="mt-6 space-y-4">
@@ -59,11 +68,12 @@
                         </div>
                         <div>
                             <label class="text-darkGray text-sm mb-2 block">Confirmez le mot de passe</label>
-                            <input type="password" name="c_password" placeholder="Confirmez votre mot de passe"
-                                required class="w-full text-darkGray text-sm border border-gray-300 px-4 py-2 rounded-md outline-scooter">
+                            <input type="password" name="c_password" placeholder="Confirmez votre mot de passe" required
+                                class="w-full text-darkGray text-sm border border-gray-300 px-4 py-2 rounded-md outline-scooter">
                         </div>
                         <div class="flex items-center">
-                            <input id="terms" name="terms" type="checkbox" class="h-4 w-4 text-scooter border-gray-300 rounded" required>
+                            <input id="terms" name="terms" type="checkbox"
+                                class="h-4 w-4 text-scooter border-gray-300 rounded" required>
                             <label for="terms" class="ml-3 text-sm text-darkGray">J'ai lu tous les thèmes</label>
                         </div>
                         <div class="mt-6">

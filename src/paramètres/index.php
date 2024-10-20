@@ -67,9 +67,11 @@ $user = $stmt->fetch();
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements@latest/dist/index.min.js"></script>
     <link rel="stylesheet" href="../dist/output.css">
+    <script src="../script.js"></script>
+
 </head>
 <body class="bg-lightGray text-darkGray">
-    <div class="container mx-auto">
+    <div class=" mx-auto">
         <!-- Header (comme dans votre code original) -->
         <header class="flex shadow-md py-4 px-4 bg-lightAccent font-[sans-serif] min-h-[70px] tracking-wide relative z-50">
         <div class="flex items-center justify-between w-full">

@@ -29,10 +29,12 @@ $vulnerabilities = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <script src="https://cdn.jsdelivr.net/npm/tw-elements@latest/dist/index.min.js"></script>
     <link rel="stylesheet" href="../dist/output.css">
+    <script src="../script.js"></script>
+
 </head>
 
 <body class="bg-lightGray text-darkGray">
-    <div class="container ">
+    <div class=" ">
         <header
             class="flex shadow-md py-4 px-4 bg-lightAccent font-[sans-serif] min-h-[70px] tracking-wide relative z-50">
             <div class="flex items-center justify-between w-full">
@@ -93,68 +95,7 @@ $vulnerabilities = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
         </header>
 
-        <!-- Section de profil -->
-        <!-- <div class="mt-6">
-            <h2 class="text-2xl font-bold mb-4">Profil de l'utilisateur</h2>
-            <div class="bg-white p-6 shadow-md rounded-lg mb-4">
-                <h3 class="text-xl font-bold mb-2">Nom: <span id="userName">Doe</span></h3>
-                <h3 class="text-xl font-bold mb-2">Prénom: <span id="userFirstName">John</span></h3>
-            </div>
-            <div class="font-sans p-4">
-                <ul class="flex">
-                    <li id="scoresTab"
-                        class="tab text-blue-600 font-bold text-base text-center bg-gray-50 py-3 px-6 border-b-2 border-blue-600 cursor-pointer transition-all">
-                        Scores
-                    </li>
-                    <li id="completedCoursesTab"
-                        class="tab text-gray-600 font-semibold text-base text-center hover:bg-gray-50 py-3 px-6 border-b-2 cursor-pointer transition-all">
-                        Cours Terminés
-                    </li>
-                    <li id="completedChallengesTab"
-                        class="tab text-gray-600 font-semibold text-base text-center hover:bg-gray-50 py-3 px-6 border-b-2 cursor-pointer transition-all">
-                        Challenges Terminés
-                    </li>
-                    <li id="additionalInfoTab"
-                        class="tab text-gray-600 font-semibold text-base text-center hover:bg-gray-50 py-3 px-6 border-b-2 cursor-pointer transition-all">
-                        Autres Informations
-                    </li>
-                </ul>
-
-                <div id="scoresContent" class="tab-content max-w-2xl block mt-8">
-                    <h4 class="text-lg font-bold text-gray-600">Scores</h4>
-                    <p class="text-sm text-gray-600 mt-4">Voici vos scores pour les différents cours et défis auxquels
-                        vous avez participé.</p>
-                    <ul class="list-disc list-inside mt-4">
-                        <li>Course 1: 85%</li>
-                        <li>Challenge 1: 90%</li>
-                    </ul>
-                </div>
-                <div id="completedCoursesContent" class="tab-content max-w-2xl hidden mt-8">
-                    <h4 class="text-lg font-bold text-gray-600">Cours Terminés</h4>
-                    <p class="text-sm text-gray-600 mt-4">Voici la liste des cours que vous avez terminés avec succès.
-                    </p>
-                    <ul class="list-disc list-inside mt-4">
-                        <li>Course 1</li>
-                        <li>Course 2</li>
-                    </ul>
-                </div>
-                <div id="completedChallengesContent" class="tab-content max-w-2xl hidden mt-8">
-                    <h4 class="text-lg font-bold text-gray-600">Challenges Terminés</h4>
-                    <p class="text-sm text-gray-600 mt-4">Voici les défis que vous avez complétés avec succès.</p>
-                    <ul class="list-disc list-inside mt-4">
-                        <li>Challenge 1</li>
-                        <li>Challenge 2</li>
-                    </ul>
-                </div>
-                <div id="additionalInfoContent" class="tab-content max-w-2xl hidden mt-8">
-                    <h4 class="text-lg font-bold text-gray-600">Autres Informations</h4>
-                    <p class="text-sm text-gray-600 mt-4">Vous pouvez inclure ici d'autres informations pertinentes sur
-                        l'utilisateur.</p>
-                </div>
-            </div>
-
-        </div> -->
-        <div class="mt-6">
+           <div class="mt-6">
             <h2 class="text-2xl font-bold mb-4">Profil de l'utilisateur</h2>
             <div class="bg-white p-6 shadow-md rounded-lg mb-4">
                 <h3 class="text-xl font-bold mb-2">Pseudo: <span id="userPseudo"></span></h3>
@@ -169,9 +110,9 @@ $vulnerabilities = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <li id="completedCoursesTab"
                         class="tab text-gray-600 font-semibold text-base text-center hover:bg-gray-50 py-3 px-6 border-b-2 cursor-pointer transition-all">
                         Cours Terminés</li>
-                    <li id="completedChallengesTab"
+                    <!-- <li id="completedChallengesTab"
                         class="tab text-gray-600 font-semibold text-base text-center hover:bg-gray-50 py-3 px-6 border-b-2 cursor-pointer transition-all">
-                        Challenges Terminés</li>
+                        Challenges Terminés</li> -->
                     <li id="additionalInfoTab"
                         class="tab text-gray-600 font-semibold text-base text-center hover:bg-gray-50 py-3 px-6 border-b-2 cursor-pointer transition-all">
                         Autres Informations</li>

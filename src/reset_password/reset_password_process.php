@@ -1,7 +1,7 @@
 
 <?php
 // Démarrage de la session
-session_start();
+// session_start();
 
 // Inclure le fichier de connexion à la base de données
 require '../db_connect.php';
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['errors'] = $errors;
 
         // Redirection vers le formulaire de réinitialisation avec les erreurs
-        header('Location: ./index.php?token=' . htmlspecialchars($token));
+        // header('Location: ./index.php?token=' . htmlspecialchars($token));
         exit;
     }
 }

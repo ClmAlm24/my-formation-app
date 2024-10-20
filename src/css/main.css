@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    @apply bg-black;
-}
+
 
 .btn{
     @apply bg-black text-white;
@@ -40,4 +38,8 @@ body{
 
 .view-details-btn a {
     @apply text-white no-underline;
+}
+
+.container{
+    @apply max-w-full;
 }
