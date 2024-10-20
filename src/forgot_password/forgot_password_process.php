@@ -30,7 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'expiration' => $expiration
         ]);
 
-        $resetLink = "https://thorough-readily-rooster.ngrok-free.app/reset_password/index.php?token=$token"; 
+        $baseLink = "https://zero2hero.emes.bj";
+        $resetLink = "$baseLink/reset_password/index.php?token=$token"; 
         $subject = "Réinitialisation de votre mot de passe";
         $message = "Vous avez demandé une réinitialisation de votre mot de passe. Cliquez sur le lien suivant pour réinitialiser votre mot de passe : <a href=\"$resetLink\">$resetLink</a>";
         
